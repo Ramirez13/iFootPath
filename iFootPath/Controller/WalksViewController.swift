@@ -17,26 +17,29 @@ class WalksViewController: UIViewController {
     
     // MARK: - Constants
     let wallksTableViewCell = WalksTableViewCell()
-    
+
     // MARK: - Variables
-    var walksArray   = [WalksInfo]()
-    var walksCDArray = [NSManagedObject]()
+    var walksArray   = [Walk]()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        checkOnLaunch()
         
-       
-       
-    
+      
+        
     }
     
     // MARK: - Actions
     @IBAction func refreshWalksButton(_ sender: Any) {
-        self.walksArray.removeAll()
         downloadWalks()
     }
     
+    @IBAction func saveButton(_ sender: Any) {
+        print(walksArray.count)
+    }
     
     // MARK: - Method
     func downloadWalks() {
@@ -48,8 +51,13 @@ class WalksViewController: UIViewController {
             do {
                 let parseWalks = try JSONDecoder().decode(Walks.self, from: data)
                 guard let _parseWalks = parseWalks.walks else { return }
-                for walk in _parseWalks {
-                    self.walksArray.append(walk)
+               
+                if self.walksArray.isEmpty {
+                    self.saveWalkData(data: _parseWalks)
+                } else {
+                    PersistenceManager.deleteData("Walk")
+                    self.walksArray.removeAll()
+                    self.saveWalkData(data: _parseWalks)
                 }
             } catch let error {
                 print("ERROR!!!!!! - \(error)")
@@ -61,6 +69,7 @@ class WalksViewController: UIViewController {
     }
 
     func changeRatingImage(rating: String?) -> UIImage? {
+        guard rating != nil else { return UIImage.init(named: "start.jpg") }
         let intRating = Double(rating!) ?? 0
             if intRating > 0 && intRating <= 1 {
                 return UIImage.init(named: "rating-1.jpg")
@@ -75,12 +84,44 @@ class WalksViewController: UIViewController {
             } else {
                 return UIImage.init(named: "start.jpg")
             }
-        }
+    }
     
+    func saveWalkData(data: [WalksInfo]) {
+        for number in data {
+        let walk = Walk(context: PersistenceManager.context)
+            walk.walkTitle = number.walkTitle
+            walk.walkType = number.walkType
+            walk.walkIcon = number.walkIcon
+            walk.walkRating = number.walkRating
+            self.walksArray.append(walk)
+        }
+        PersistenceManager.saveContext()
+    }
+    
+    func fetchWalkData() {
+        let fetchRequest: NSFetchRequest<Walk> = Walk.fetchRequest()
+        do {
+            let walksArray = try PersistenceManager.context.fetch(fetchRequest)
+            self.walksArray = walksArray
+            self.walksTableView.reloadData()
+        } catch {
+            print("Error fetchWalkData")
+        }
+    }
+    
+    func checkOnLaunch() {
+        let alreadyLaunched = UserDefaults.standard.bool(forKey: "alreadyLaunched")
+        
+        if alreadyLaunched {
+            fetchWalkData()
+        } else {
+            downloadWalks()
+            UserDefaults.standard.set(true, forKey: "alreadyLaunched")
+        }
+    }
     
     
 }
-
 
 
 extension WalksViewController: UITableViewDelegate, UITableViewDataSource {
@@ -109,16 +150,16 @@ extension WalksViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard editingStyle == .delete else { return }
-        walksArray.remove(at: indexPath.row)
         
+        guard editingStyle == .delete else { return }
+        PersistenceManager.delete(walksArray[indexPath.row])
+        walksArray.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
+       
     }
     
-    
+
 }
-
-
 
 
 
