@@ -21,7 +21,7 @@ extension Walk {
     @NSManaged public var walkType: String?
     @NSManaged public var walkIcon: String?
     @NSManaged public var walkRating: String?
-    @NSManaged public var WalkID: String?
+    @NSManaged public var walkID: String?
     @NSManaged public var walkCountry: String?
     @NSManaged public var walkDistrict: String?
     @NSManaged public var walkLength: String?

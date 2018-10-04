@@ -32,15 +32,15 @@ class WalksViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func refreshWalksButton(_ sender: Any) {
-        if self.walksArray.isEmpty {
-            downloadWalks()
-        } else {
-            PersistenceManager.deleteData("Walk")
-            self.walksArray.removeAll()
-            downloadWalks()
-        }
-     
-    
+        //        if self.walksArray.isEmpty {
+        //            downloadWalks()
+        //        } else {
+        //            PersistenceManager.deleteData("Walk")
+        //            self.walksArray.removeAll()
+        downloadWalks()
+        //        }
+        
+        
     }
     
     
@@ -84,8 +84,32 @@ class WalksViewController: UIViewController {
         }
     }
     
+//        func saveWalkData(data: [WalksInfo]) {
+//
+//            for number in data {
+//                let walk = Walk(context: PersistenceManager.context)
+//                walk.walkTitle = number.walkTitle
+//                walk.walkType = number.walkType
+//                walk.walkIcon = number.walkIcon
+//                walk.walkRating = number.walkRating
+//                walk.walkCountry = number.walkCountry
+//                walk.walkDistrict = number.walkDistrict
+//                walk.walkLength = number.walkLength
+//                walk.walkGrade = number.walkGrade
+//                walk.walkStartCoordLat = number.walkStartCoordLat
+//                walk.walkStartCoordLong = number.walkStartCoordLong
+//                walk.walkIllustration = number.walkIllustration
+//                walk.walkDescription = number.walkDescription
+//                walk.walkID = number.walkID
+//                self.walksArray.append(walk)
+//            }
+//            print(walksArray.count)
+//            PersistenceManager.saveContext()
+//        }
+    
+    
     func saveWalkData(data: [WalksInfo]) {
-        
+
         for number in data {
             let walk = Walk(context: PersistenceManager.context)
             walk.walkTitle = number.walkTitle
@@ -100,15 +124,23 @@ class WalksViewController: UIViewController {
             walk.walkStartCoordLong = number.walkStartCoordLong
             walk.walkIllustration = number.walkIllustration
             walk.walkDescription = number.walkDescription
-            walk.WalkID = number.walkID
-            
-            self.walksArray.append(walk)
-            
+            walk.walkID = number.walkID
+
+            if walksArray.isEmpty {
+                walksArray.append(walk)
+                PersistenceManager.saveContext()
+            } else {
+                for i in walksArray {
+                    if i.walkID == walk.walkID {
+                        break
+                    } else if (i == walksArray[walksArray.endIndex - 1]) {
+                        walksArray.append(walk)
+                        PersistenceManager.saveContext()
+                    }
+                }
+            }
         }
-        PersistenceManager.saveContext()
     }
-    
-   
     
     func fetchWalkData() {
         let fetchRequest: NSFetchRequest<Walk> = Walk.fetchRequest()
