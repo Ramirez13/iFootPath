@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="18A391" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Walk" representedClassName=".Walk" syncable="YES">
+        <attribute name="walkCountry" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="walkDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="walkDistrict" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="walkGrade" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="walkIcon" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="walkID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="walkIllustration" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="walkLength" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="walkRating" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="walkStartCoordLat" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="walkStartCoordLong" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="walkTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="walkType" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Walk" positionX="-27" positionY="18" width="128" height="105"/>
+        <element name="Walk" positionX="-27" positionY="18" width="128" height="240"/>
     </elements>
 </model>

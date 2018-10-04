@@ -10,6 +10,7 @@
 		565A70D8215E304300F8D27A /* Walk+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565A70D6215E304300F8D27A /* Walk+CoreDataClass.swift */; };
 		565A70D9215E304300F8D27A /* Walk+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565A70D7215E304300F8D27A /* Walk+CoreDataProperties.swift */; };
 		565A70DB215E322D00F8D27A /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565A70DA215E322D00F8D27A /* PersistenceManager.swift */; };
+		565A70DD2162948500F8D27A /* DetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565A70DC2162948400F8D27A /* DetailInfoViewController.swift */; };
 		56F37AD321528F5300FB5CDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F37AD221528F5300FB5CDD /* AppDelegate.swift */; };
 		56F37AD521528F5300FB5CDD /* WalksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F37AD421528F5300FB5CDD /* WalksViewController.swift */; };
 		56F37AD821528F5300FB5CDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56F37AD621528F5300FB5CDD /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 		565A70D6215E304300F8D27A /* Walk+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Walk+CoreDataClass.swift"; sourceTree = "<group>"; };
 		565A70D7215E304300F8D27A /* Walk+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Walk+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		565A70DA215E322D00F8D27A /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		565A70DC2162948400F8D27A /* DetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewController.swift; sourceTree = "<group>"; };
 		56F37ACF21528F5300FB5CDD /* iFootPath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iFootPath.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56F37AD221528F5300FB5CDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56F37AD421528F5300FB5CDD /* WalksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalksViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				56F37AD421528F5300FB5CDD /* WalksViewController.swift */,
+				565A70DC2162948400F8D27A /* DetailInfoViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 				56F37AED2152FA7800FB5CDD /* WalksTableViewCell.swift in Sources */,
 				56F37AD521528F5300FB5CDD /* WalksViewController.swift in Sources */,
 				56F37AD321528F5300FB5CDD /* AppDelegate.swift in Sources */,
+				565A70DD2162948500F8D27A /* DetailInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

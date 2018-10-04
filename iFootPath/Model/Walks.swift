@@ -16,20 +16,20 @@ struct Walks: Decodable {
 }
 
 struct WalksInfo: Decodable {
-//    let walkID            : String?
+    let walkID            : String?
 //    let walkVersion       : String?
     let walkTitle         : String?
-//    let walkDescription   : String?
-//    let walkLength        : String?
-//    let walkGrade         : String?
-//    let walkCounty        : String?
-//    let walkDistrict      : String?
+    let walkDescription   : String?
+    let walkLength        : String?
+    let walkGrade         : String?
+    let walkCountry       : String?
+    let walkDistrict      : String?
     let walkType          : String?
     let walkRating        : String?
-//    let walkStartCoordLat : String?
-//    let walkStartCoordLong: String?
+    let walkStartCoordLat : String?
+    let walkStartCoordLong: String?
     let walkIcon          : String?
-//    let walkIllustration  : String?
+    let walkIllustration  : String?
 //    let walkPublished     : String?
 //    let walkPhoto         : String?
 }
