@@ -68,8 +68,8 @@
 		56F37AD121528F5300FB5CDD /* iFootPath */ = {
 			isa = PBXGroup;
 			children = (
-				565A70D6215E304300F8D27A /* Walk+CoreDataClass.swift */,
 				565A70D7215E304300F8D27A /* Walk+CoreDataProperties.swift */,
+				565A70D6215E304300F8D27A /* Walk+CoreDataClass.swift */,
 				56F37AE721528FD400FB5CDD /* Model */,
 				56F37AE821528FE300FB5CDD /* View */,
 				56F37AE921528FEF00FB5CDD /* Controller */,

@@ -33,6 +33,7 @@ class DetailInfoViewController: UIViewController {
         
     }
     
+    
 
     // MARK: - Method
     func showInfo() {

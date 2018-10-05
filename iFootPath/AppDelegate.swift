@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 
-var launch = ""
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -50,7 +50,7 @@ final class PersistenceManager {
     }
     
     static func delete(_ object: NSManagedObject) {
-        context.delete(object)
+        PersistenceManager.context.delete(object)
         PersistenceManager.saveContext()
     }
     

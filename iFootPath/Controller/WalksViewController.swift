@@ -30,16 +30,17 @@ class WalksViewController: UIViewController {
         
     }
     
+    
     // MARK: - Actions
     @IBAction func refreshWalksButton(_ sender: Any) {
-        //        if self.walksArray.isEmpty {
-        //            downloadWalks()
-        //        } else {
-        //            PersistenceManager.deleteData("Walk")
-        //            self.walksArray.removeAll()
+//                if self.walksArray.isEmpty {
+//                    downloadWalks()
+//                } else {
+//                    PersistenceManager.deleteData("Walk")
+//                    self.walksArray.removeAll()
         downloadWalks()
-        //        }
-        
+//                }
+    
         
     }
     
@@ -201,7 +202,6 @@ extension WalksViewController: UITableViewDelegate, UITableViewDataSource {
         PersistenceManager.delete(walksArray[indexPath.row])
         walksArray.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
