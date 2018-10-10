@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  iFootPath
-//
-//  Created by Viktor on 19.09.2018.
-//  Copyright © 2018 Viktor. All rights reserved.
-//
-
 import UIKit
 import CoreData
 
@@ -17,11 +9,13 @@ class WalksViewController: UIViewController {
     
     // MARK: - Constants
     let wallksTableViewCell = WalksTableViewCell()
+    let image = UIImage()
+  
+    
     
     // MARK: - Variables
     var walksArray   = [Walk]()
     var infoToBeSent: Walk?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,14 +27,8 @@ class WalksViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func refreshWalksButton(_ sender: Any) {
-//                if self.walksArray.isEmpty {
-//                    downloadWalks()
-//                } else {
-//                    PersistenceManager.deleteData("Walk")
-//                    self.walksArray.removeAll()
+
         downloadWalks()
-//                }
-    
         
     }
     
@@ -67,81 +55,44 @@ class WalksViewController: UIViewController {
             }.resume()
     }
     
-    func changeRatingImage(rating: String?) -> UIImage? {
-        guard rating != nil else { return UIImage.init(named: "start.jpg") }
-        let intRating = Double(rating!) ?? 0
-        if intRating > 0 && intRating <= 1 {
-            return UIImage.init(named: "rating-1.jpg")
-        } else if intRating > 1 && intRating <= 2 {
-            return UIImage.init(named: "rating-2.jpg")
-        } else if intRating > 2 && intRating <= 3 {
-            return UIImage.init(named: "rating-3.jpg")
-        } else if intRating > 3 && intRating <= 4 {
-            return UIImage.init(named: "rating-4.jpg")
-        } else if intRating > 4 && intRating <= 5 {
-            return UIImage.init(named: "rating-5.jpg")
-        } else {
-            return UIImage.init(named: "start.jpg")
-        }
-    }
     
-//        func saveWalkData(data: [WalksInfo]) {
-//
-//            for number in data {
-//                let walk = Walk(context: PersistenceManager.context)
-//                walk.walkTitle = number.walkTitle
-//                walk.walkType = number.walkType
-//                walk.walkIcon = number.walkIcon
-//                walk.walkRating = number.walkRating
-//                walk.walkCountry = number.walkCountry
-//                walk.walkDistrict = number.walkDistrict
-//                walk.walkLength = number.walkLength
-//                walk.walkGrade = number.walkGrade
-//                walk.walkStartCoordLat = number.walkStartCoordLat
-//                walk.walkStartCoordLong = number.walkStartCoordLong
-//                walk.walkIllustration = number.walkIllustration
-//                walk.walkDescription = number.walkDescription
-//                walk.walkID = number.walkID
-//                self.walksArray.append(walk)
-//            }
-//            print(walksArray.count)
-//            PersistenceManager.saveContext()
-//        }
-    
-    
-    func saveWalkData(data: [WalksInfo]) {
-
-        for number in data {
+    func saveWalkData(data: [WalksInfo]) {        
+        for one in data {
             let walk = Walk(context: PersistenceManager.context)
-            walk.walkTitle = number.walkTitle
-            walk.walkType = number.walkType
-            walk.walkIcon = number.walkIcon
-            walk.walkRating = number.walkRating
-            walk.walkCountry = number.walkCountry
-            walk.walkDistrict = number.walkDistrict
-            walk.walkLength = number.walkLength
-            walk.walkGrade = number.walkGrade
-            walk.walkStartCoordLat = number.walkStartCoordLat
-            walk.walkStartCoordLong = number.walkStartCoordLong
-            walk.walkIllustration = number.walkIllustration
-            walk.walkDescription = number.walkDescription
-            walk.walkID = number.walkID
-
+            walk.walkTitle = one.walkTitle
+            walk.walkType = one.walkType
+            walk.walkIcon = one.walkIcon
+            walk.walkRating = one.walkRating
+            walk.walkCountry = one.walkCountry
+            walk.walkDistrict = one.walkDistrict
+            walk.walkLength = one.walkLength
+            walk.walkGrade = one.walkGrade
+            walk.walkStartCoordLat = one.walkStartCoordLat
+            walk.walkStartCoordLong = one.walkStartCoordLong
+            walk.walkIllustration = one.walkIllustration
+            walk.walkDescription = one.walkDescription
+            walk.walkID = one.walkID
+            
+        
             if walksArray.isEmpty {
                 walksArray.append(walk)
-                PersistenceManager.saveContext()
+                image.saveImage(walk.walkIcon)
+                image.saveImage(walk.walkIllustration)
             } else {
-                for i in walksArray {
-                    if i.walkID == walk.walkID {
+                for one in walksArray {
+                    if one.walkID == walk.walkID {
                         break
-                    } else if (i == walksArray[walksArray.endIndex - 1]) {
+                    } else if (one == walksArray[walksArray.endIndex - 1]) {
                         walksArray.append(walk)
-                        PersistenceManager.saveContext()
+                        image.saveImage(walk.walkIcon)
+                        image.saveImage(walk.walkIllustration)
                     }
                 }
             }
         }
+        PersistenceManager.saveContext()
     }
+    
     
     func fetchWalkData() {
         let fetchRequest: NSFetchRequest<Walk> = Walk.fetchRequest()
@@ -171,6 +122,8 @@ class WalksViewController: UIViewController {
 }
 
 
+
+
 extension WalksViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -182,23 +135,15 @@ extension WalksViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WalksCell", for: indexPath) as! WalksTableViewCell
         cell.titleLabel.text = walk.walkTitle
         cell.detailLabel.text = walk.walkType
-        cell.ratingImage.image = changeRatingImage(rating: walk.walkRating)
-        
-        if let url = URL(string: "http://www.ifootpath.com/upload/thumbs/" + (walk.walkIcon ?? "0")) {
-            do {
-                let data = try Data(contentsOf: url)
-                cell.areaImage.image = UIImage(data: data)
-            } catch let error {
-                print("ERROR!!!!!! - \(error.localizedDescription)")
-            }
-        }
-        
+        cell.ratingImage.image = image.changeRatingImage(walk.walkRating)
+        cell.areaImage.image = image.getImageFromStorage(walk.walkIcon)
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         guard editingStyle == .delete else { return }
+        image.deleteImageFromStorage(walksArray[indexPath.row].walkIcon!)
         PersistenceManager.delete(walksArray[indexPath.row])
         walksArray.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -219,6 +164,4 @@ extension WalksViewController: UITableViewDelegate, UITableViewDataSource {
     
     
 }
-
-
 

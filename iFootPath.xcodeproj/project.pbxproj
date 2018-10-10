@@ -19,6 +19,7 @@
 		56F37AE021528F5500FB5CDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56F37ADE21528F5500FB5CDD /* LaunchScreen.storyboard */; };
 		56F37AED2152FA7800FB5CDD /* WalksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F37AEC2152FA7800FB5CDD /* WalksTableViewCell.swift */; };
 		56F37AF62158D35900FB5CDD /* Walks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F37AF52158D35900FB5CDD /* Walks.swift */; };
+		56F58634216B8A96003D7932 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F58633216B8A96003D7932 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		56F37AE121528F5500FB5CDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56F37AEC2152FA7800FB5CDD /* WalksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalksTableViewCell.swift; sourceTree = "<group>"; };
 		56F37AF52158D35900FB5CDD /* Walks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Walks.swift; sourceTree = "<group>"; };
+		56F58633216B8A96003D7932 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				56F37AE121528F5500FB5CDD /* Info.plist */,
 				56F37AD921528F5300FB5CDD /* iFootPath.xcdatamodeld */,
 				565A70DA215E322D00F8D27A /* PersistenceManager.swift */,
+				56F58633216B8A96003D7932 /* Extensions.swift */,
 			);
 			path = iFootPath;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 				56F37AF62158D35900FB5CDD /* Walks.swift in Sources */,
 				565A70DB215E322D00F8D27A /* PersistenceManager.swift in Sources */,
 				56F37ADB21528F5300FB5CDD /* iFootPath.xcdatamodeld in Sources */,
+				56F58634216B8A96003D7932 /* Extensions.swift in Sources */,
 				56F37AED2152FA7800FB5CDD /* WalksTableViewCell.swift in Sources */,
 				56F37AD521528F5300FB5CDD /* WalksViewController.swift in Sources */,
 				56F37AD321528F5300FB5CDD /* AppDelegate.swift in Sources */,

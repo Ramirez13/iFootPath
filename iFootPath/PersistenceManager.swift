@@ -39,7 +39,7 @@ final class PersistenceManager {
         if context.hasChanges {
             do {
                 try context.save()
-                print("SAVED")
+//                print("SAVED")
                 
                 
             } catch {

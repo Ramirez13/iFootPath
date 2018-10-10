@@ -20,6 +20,8 @@ class DetailInfoViewController: UIViewController {
     @IBOutlet weak var ilustrationImage: UIImageView!
     @IBOutlet weak var descriptionTextView: UITextView!
     
+    // MARK: - Constants
+    let image = UIImage()
     
     // MARK: - Varibles
     var detailInfo: Walk?
@@ -45,15 +47,8 @@ class DetailInfoViewController: UIViewController {
         startCoordLatLabel.text = "Latitude: \(detailInfo!.walkStartCoordLat ?? "000")"
         startCoordLongLabel.text = "Longitude: \(detailInfo!.walkStartCoordLong ?? "000")"
         descriptionTextView.text = detailInfo!.walkDescription ?? "000"
-        
-//        if let url = URL(string: "http://www.ifootpath.com/upload/thumbs/" + (detailInfo?.walkIllustration ?? "0")) {
-//            do {
-//                let data = try Data(contentsOf: url)
-//                ilustrationImage.image = UIImage(data: data)
-//            } catch let error {
-//                print("ERROR!!!!!! - \(error.localizedDescription)")
-//            }
-//        }
+        ilustrationImage.image = image.getImageFromStorage(detailInfo?.walkIllustration)
+
     }
 
 }
